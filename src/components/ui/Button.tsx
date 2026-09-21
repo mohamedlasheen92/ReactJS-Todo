@@ -46,7 +46,8 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <button>
+    <button type="submit"
+      className={className}>
       {children}
     </button>
     // className={cn(buttonVariants({ variant, size, fullWidth, className }))} {...props}>
