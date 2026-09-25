@@ -8,7 +8,7 @@ const buttonVariants = cva("rounded-md font-medium text-white duration-300 dark:
     variant: {
       // ** FILLED
       default:
-        "bg-slate-900 dark:bg-indigo-600 dark:text-white dark:hover:bg-indigo-700",
+        "bg-slate-900 dark:bg-indigo-600 dark:text-white dark:hover:bg-indigo-700 cursor-pointer",
       danger:
         "bg-red-900 dark:bg-[#c2344d] dark:text-white dark:hover:bg-red-700",
       cancel:
@@ -47,10 +47,9 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button type="submit"
-      className={className}>
+      className={buttonVariants({ variant, size, fullWidth, className })} {...props}>
       {children}
     </button>
-    // className={cn(buttonVariants({ variant, size, fullWidth, className }))} {...props}>
   );
 };
 

@@ -15,8 +15,8 @@ const Register = () => {
 
   console.log("Errors: ", errors);
   return (
-    <div className="max-w-md mx-auto">
-      <h2 className="text-center mb-4 text-3xl font-semibold">Register to get access!</h2>
+    <div className="max-w-md lg:max-w-xl mx-auto">
+      <h2 className="text-center mb-4 text-xl sm:text-3xl font-semibold">Register to get access!</h2>
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <Input placeholder="Username" {...register("username", {
@@ -48,7 +48,7 @@ const Register = () => {
           {errors?.password && <InputErrorMessage message={errors?.password?.message} />}
         </div>
 
-        <Button className="w-full cursor-pointer bg-blue-700 text-white py-2 rounded">Register</Button>
+        <Button fullWidth>Register</Button>
       </form>
     </div>
   );
