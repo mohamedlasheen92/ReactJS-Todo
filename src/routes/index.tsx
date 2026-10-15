@@ -6,9 +6,12 @@ import RootLayout from "../pages/RootLayout";
 import PageNotFound from "../pages/PageNotFound";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Profile from "../pages/Profile";
 
-const isLoggedIn = false;
-const userData: { email: string } | null = isLoggedIn ? { email: "ali@gmail.com" } : null;
+const dataStr = localStorage.getItem("loggedInUser");
+const userData = dataStr ? JSON.parse(dataStr) : null;
+const isLoggedIn = userData?.jwt;
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -32,6 +35,11 @@ const router = createBrowserRouter(
           </ProtectedRoute>
           }
         />
+
+        <Route path="profile"
+          element={<ProtectedRoute isAllowed={isLoggedIn} redirectPath="/login" data={userData}>
+            <Profile />
+          </ProtectedRoute>} />
       </Route>
 
 
