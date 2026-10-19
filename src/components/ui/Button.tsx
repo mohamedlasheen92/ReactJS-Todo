@@ -3,16 +3,16 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { type HTMLAttributes, type ReactNode } from "react";
 
-const buttonVariants = cva("rounded-md font-medium text-white duration-300 dark:text-black", {
+const buttonVariants = cva("rounded-md font-medium text-white duration-300 dark:text-black cursor-pointer outline-none", {
   variants: {
     variant: {
       // ** FILLED
       default:
-        "bg-slate-900 dark:bg-indigo-600 dark:text-white dark:hover:bg-indigo-700 cursor-pointer disabled:cursor-not-allowed disabled:bg-indigo-400 disabled:hover:bg-indigo-400",
+        "bg-slate-900 dark:bg-indigo-600 dark:text-white dark:hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-indigo-400 disabled:hover:bg-indigo-400",
       danger:
-        "bg-red-900 dark:bg-[#c2344d] dark:text-white dark:hover:bg-red-700",
+        "bg-red-900 dark:bg-[#c2344d] dark:text-white dark:hover:bg-red-700 disabled:cursor-not-allowed disabled:bg-red-400 disabled:hover:bg-red-400",
       cancel:
-        "bg-gray-300 text-gray-700 dark:bg-[#f5f5fa] dark:text-dark hover:bg-gray-400 dark:hover:bg-gray-200",
+        "border border-gray-200 bg-gray-300 text-gray-700 dark:bg-[#f5f5fa] dark:text-dark hover:bg-gray-400 dark:hover:bg-gray-200",
 
       // ** OUTLINE
       outline:
@@ -36,6 +36,7 @@ const buttonVariants = cva("rounded-md font-medium text-white duration-300 dark:
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   children: ReactNode;
   loading?: boolean;
+  type?: 'submit' | 'reset' | 'button'
 }
 
 const Button = ({
@@ -45,10 +46,11 @@ const Button = ({
   className,
   children,
   loading,
+  type = 'submit',
   ...props
 }: ButtonProps) => {
   return (
-    <button type="submit" disabled={loading}
+    <button type={type} disabled={loading}
       className={buttonVariants({ variant, size, fullWidth, className })} {...props}>
 
       {loading ?
